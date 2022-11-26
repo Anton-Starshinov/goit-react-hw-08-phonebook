@@ -3,7 +3,6 @@ import { fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { List, ListItem } from './ContactsList.styled';
-import { Loader } from 'components/Loader/Loader';
 import {
   selectContacts,
   selectStatusFilter,
