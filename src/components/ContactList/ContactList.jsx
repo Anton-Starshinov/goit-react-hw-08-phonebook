@@ -6,7 +6,6 @@ import { List, ListItem } from './ContactsList.styled';
 import {
   selectContacts,
   selectStatusFilter,
-  selectIsLoading,
   selectError,
 } from 'redux/contacts/selectors';
 
@@ -14,7 +13,6 @@ export function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectStatusFilter);
-  const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
   const normalized = filter.toLocaleLowerCase();
