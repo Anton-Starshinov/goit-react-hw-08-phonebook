@@ -1,17 +1,22 @@
-import Contact from 'components/Contact/Contact';
-import { fetchContacts } from 'redux/operations';
+import { Contact } from 'components/Contact/Contact';
+import { fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
 import { List, ListItem } from './ContactsList.styled';
-import { getStatusFilter, getIsLoading, getError } from 'redux/selectors';
+import { Loader } from 'components/Loader/Loader';
+import {
+  selectContacts,
+  selectStatusFilter,
+  selectIsLoading,
+  selectError,
+} from 'redux/contacts/selectors';
 
-function ContactList() {
+export function ContactList() {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getStatusFilter);
-  const isLoading = useSelector(getIsLoading);
-  const error = useSelector(getError);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectStatusFilter);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   const normalized = filter.toLocaleLowerCase();
   const filterContacts = contacts.filter(contact =>
@@ -24,15 +29,12 @@ function ContactList() {
 
   return (
     <List>
-      {isLoading && !error && <p>Request in progress...</p>}
       {error && <p>error</p>}
-      {filterContacts.map(({ id, name, phone }) => (
+      {filterContacts.map(({ id, name, number }) => (
         <ListItem key={id}>
-          <Contact id={id} name={name} number={phone} />
+          <Contact id={id} name={name} number={number} />
         </ListItem>
       ))}
     </List>
   );
 }
-
-export default ContactList;

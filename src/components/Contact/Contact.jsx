@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
-import { deleteContacts } from 'redux/operations';
+import { deleteContacts } from 'redux/contacts/operations';
 import {
   TextList,
   ButtonList,
   ItemBox,
 } from 'components/ContactList/ContactsList.styled';
 
-const Contact = ({ id, name, number }) => {
+export const Contact = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => dispatch(deleteContacts(id));
@@ -22,5 +22,3 @@ const Contact = ({ id, name, number }) => {
     </ItemBox>
   );
 };
-
-export default Contact;

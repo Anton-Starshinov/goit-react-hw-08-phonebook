@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import { FormStyled, LabelForm, InputForm, ButtonForm } from './Form.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from 'redux/selectors';
-import { addContacts } from 'redux/operations';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContacts } from 'redux/contacts/operations';
 
-export default function Form() {
-  const contacts = useSelector(getContacts);
+export function Form() {
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -21,10 +21,6 @@ export default function Form() {
     setNumber(evt.target.value);
   };
 
-  const handleAddContact = (name, phone) => {
-    dispatch(addContacts({ name, phone }));
-  };
-
   const handleSubmit = evt => {
     evt.preventDefault();
     if (
@@ -35,7 +31,7 @@ export default function Form() {
       return alert(`${name} is already in contacts`);
     }
 
-    handleAddContact(name, number);
+    dispatch(addContacts({ name, number }));
 
     resetSubmit();
   };

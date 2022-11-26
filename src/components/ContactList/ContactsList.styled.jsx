@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  width: 350px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+  width: 370px;
   font-size: 20px;
   padding-bottom: 20px;
+  pading: 0;
 `;
 
 export const ListItem = styled.li`
@@ -18,7 +22,7 @@ export const TextList = styled.p`
 `;
 
 export const ButtonList = styled.button`
-  width: 70px;
+  width: 90px;
   height: 20px;
   border-radius: 4px;
   background-color: rgb(245, 122, 122);
