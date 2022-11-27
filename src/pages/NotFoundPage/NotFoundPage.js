@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { ConteinerHome, TextStyled } from 'pages/Home/Home.styled';
 import { LinkStyled } from './NotFoundPage.styled';
 
