@@ -8,6 +8,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute';
 import { refreshUser } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
+import { Loader } from './Loader/Loader';
+import { NotFoundPage } from 'pages/NotFoundPage/NotFoundPage';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const Register = lazy(() => import('pages/Register/Register'));
@@ -23,7 +25,7 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <p>Загрузка пользователя...</p>
+    <Loader />
   ) : (
     <div>
       <Routes>
@@ -51,6 +53,7 @@ export const App = () => {
               <PrivateRoute redirectTo="/login" component={<Contacts />} />
             }
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </div>
